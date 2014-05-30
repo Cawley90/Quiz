@@ -1,0 +1,59 @@
+body {
+	background-image:url("img/bg.jpg");
+}
+
+#banner {
+	height:150px;
+	width:100%;
+}
+
+#userPoints {
+	float:left;
+	height:200px;
+	width:15%;
+	background-color:#E7E7E7;
+	
+}
+
+#qBox {
+	position:relative;
+	display:inline-block;
+	left:15%;
+	height:500px;
+	width:50%;
+	background-color:#E7E7E7;
+}
+
+.boxHead {
+	height:50px;
+	width:100%;
+	background-color:#3E5EFF;
+	
+	color:white;
+
+}
+
+.imgCent {
+	position:relative;
+	left:40%;
+	height:100px;
+
+}
+
+.tipText {
+	text-align:center;
+	font-size:10px;
+}
+
+#startBtn {
+	height:50px;
+	width:100px;
+	color:white;
+	background-color:#3E5EFF;
+	position:relative;
+	left:85%;
+	top:10px;
+	text-align:center;
+	font-size:25px;
+
+}
