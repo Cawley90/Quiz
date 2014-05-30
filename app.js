@@ -11,6 +11,8 @@ $(document).ready(function(){
 function Problem(q, a){
 	this.q = q;
 	this.a = [];
+	//data-value is assigning a number to run through the for loop so
+	//i can determine when to stop and return a successful number.
 	this.a[0] = '<div data-value = 0 id ="ans">' + a[0] + '</div>';
 	this.a[1] = '<div data-value = 1 id ="ans">' + a[1] + '</div>';
 	this.a[2] = '<div data-value = 2 id ="ans">' + a[2] + '</div>';
@@ -23,9 +25,14 @@ function Problem(q, a){
 function answerCheck(x, y){
 	this.x = x;
 	this.y = y;
-	//var arrVal = x.val();
-	for (var i = x; i<= y.length; i++) {
+	//x in this case is the data value of #ans, and y is the data value of whatever #ans is selected.  It works, I don't completely understand why though.
+	for (var i = x; i<= y; i++) {
 		console.log(y[i]);
+		//Evaluates if the user selection is correct.  3 is currently the correct answer for question 1, I need to make a variable for the appropraite value.
+		if (y[i] >= 3) {
+			alert("You wot m89");
+		}
+
 	};
 }
 
@@ -54,8 +61,11 @@ var q2 = new Problem ("Color", ["Red", "Blue", "Green"]);
 		qField.append(q1.q);
 		ansField.append(q1.a);
 		$(document).on("click", '#ans', function(){
-			//alert($(this).attr('data-value'));
-			answerCheck($(this).attr('data-value'), q1.a);
+			alert($(this).attr('data-value'));
+			answerCheck($('#ans').attr('data-value'), $(this).attr('data-value')); 
+				
+			
+			
 		}); 
 			
 		
@@ -76,6 +86,7 @@ var q2 = new Problem ("Color", ["Red", "Blue", "Green"]);
 
 	})
 	
+
 
 	
 });
