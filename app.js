@@ -3,11 +3,29 @@ $(document).ready(function(){
 	var ansField = $('#ansField');
 	var nQuestion = [q1, q2];
 	var resultScreen = $('#resultScreen');
-	//this is going to be the value that I throw into the for loop in the answerCheck function to evaluate whether or not the user has the correct answer.
-	//if y[i] >= correctAns, it will work.
-	var correctAns = 0;
- 	
+	
+		
+ //sel = slected answer, ca = correct answer, ln = loadnext, meaning which question comes after the one in question.  Doing this to cut down the code I have to do.
+function answerCheck (sel, ca, ln) {
+	this.sel = sel;
+	this.ca = ca;
+	if (sel == ca) {
+		alert("Yis");
+		loadNext(ln);
+	}
 
+	else {
+		alert("Nah");
+	}
+}
+
+function loadNext(nextQ) {
+	this.nextQ = nextQ;
+	qField.children().fadeOut(500);
+	ansField.children().fadeOut(500);
+	qField.append(nextQ.q);
+	ansField.append(nextQ.a);
+}
 
 	
 function Problem(q, a, correctAns){
@@ -22,22 +40,6 @@ function Problem(q, a, correctAns){
 	this.a[3] = '<div data-value = 3 id ="ans">' + a[3] + '</div>';
 	
 
-}
-
-// x is the value of i, y is the question selector.  c is supposed to be the correct answer value.
-function answerCheck(x, y){
-	this.x = x;
-	this.y = y;
-	
-	//x in this case is the data value of #ans, and y is the data value of whatever #ans is selected.  It works, I don't completely understand why though.
-	for (var i = x; i<= y; i++) {
-		console.log(y[i]);
-		//Evaluates if the user selection is correct.  3 is currently the correct answer for question 1, I need to make a variable for the appropraite value.
-		if (y[i] >= correctAns) {
-			alert("Correct!");
-		}
-
-	};
 }
 
 
@@ -57,6 +59,7 @@ var q2 = new Problem ("Color", ["Red", "Blue", "Green"]);
 
 
 
+
 	
 	// <--- When user clicks Start, it clears the welcome message and loads first question -->
 	$(document).on("click", "#startBtn", function(){
@@ -66,19 +69,9 @@ var q2 = new Problem ("Color", ["Red", "Blue", "Green"]);
 		ansField.append(q1.a);
 		$(document).on("click", '#ans', function(){
 			//alert($(this).attr('data-value'));
-			answerCheck($('#ans').attr('data-value'), $(this).attr('data-value')); 
-				
-			
-			
-		}); 
-			
-		
-
-		//$(document).on("click", "#an0", function(){
-		//resultScreen.fadeIn(500).append("<div id = 'text'>Incorrect! <br /> Sorry, but I think you should consider stepping away from your computer every-so-often </div>");
-
-		//})
-
+			answerCheck($(this).attr('data-value'), q1.correctAns, q2);
+									
+		}); 	
 		
 	});
 
