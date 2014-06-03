@@ -11,7 +11,6 @@ $(document).ready(function(){
 
 //winning music
 function musicPlay() {
-  $('#nedm')[0].load();
   $('#nedm')[0].play();
   $('#nedm')[0].volume = 0.7;
   
@@ -157,9 +156,9 @@ var q11 = new Problem("You're fired up over something!  What do you do?!",
 	], 2);
 
 var q12 = new Problem("Wikipedia..",
-	["Is an untrustworthy source of information.  Anyone can make edits to it, I got docked points on an assignment once because it tricked me into thinking trickle-down economics were a weather system!",
+	["Is an untrustworthy source of information.  Anyone can make edits to it, I got docked points on an assignment once because it tricked me into thinking trickle-down economics was a weather system!",
 	"The internet is a bad place for information, go to your local library and tack on an extra 17 hours onto whatever you're trying to accomplish by looking through books (Not that there's anything wrong with that..)",
-	"Is, like any other website, a place of good and evil.  Yes people can make absurd edits, and it's up to me to look into every detail before believing it.  Any line worth looking at on any article on Wikipedia has an indicator for what source that information came from.  Click it, check the source.",
+	"Is - like any other website - a place of good and evil.  Yes people can make absurd edits, and it's up to me to look into every detail before believing it.  Any line worth looking at on any article on Wikipedia has an indicator for what source that information came from.  Click it, check the source.",
 	"I have no strong feelings one way or the other.  (You know this option isn't correct)."
 	], 2);
 
