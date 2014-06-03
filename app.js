@@ -246,11 +246,11 @@ function fin() {
 			}
 			
 			$(document).on("click", "#newGame", function(){
-				$('#winGraphic').fadeOut();
-				$('#newGame').fadeOut();
-				qField.children().fadeOut(300);
+				$('#winGraphic').hide();
+				$('#newGame').hide();
+				qField.children().hide();
 				qField.empty();
-				ansField.children().fadeOut(300);
+				ansField.children().hide();
 				qField.append(q1.q);
 				ansField.append(q1.a);
 				currentQ = 0;
