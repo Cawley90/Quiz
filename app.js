@@ -76,10 +76,10 @@ function Problem(q, a, correctAns){
 
 
 
-var q1 = new Problem("What do you do when you see someone post something inflammitory?",
+var q1 = new Problem("What do you do when you see someone post something inflammatory?",
 	["Argue with them until they realize the error in their ways, furthering your domination of the website and getting you closer to realizing your goal of being known as the website hero.",
 	"MAN THE BATTLESTATIONS WE'VE GOT FLAMEBAIT!",
-	"Post more inflammitory things.",
+	"Post more inflammatory things.",
 	"Don't click on it, don't post, just move on with your life.  This isn't the grand arena where good fights evil, it's just a website and you have better things to do."
 	], 3);
 
@@ -87,7 +87,7 @@ var q1 = new Problem("What do you do when you see someone post something inflamm
 
 
 var q2 = new Problem("You've made a topic trying to influence discussion.  People start commenting.  What do you do?",
-	["Reply to it with one word.  Maybe even one letter would suffice.",
+	["Reply to it with one word.  Maybe even one letter would suffice.  I'm also the worst.",
 	"Ignore all replies.",
 	"Change the name of the topic and make everyone look ridiculous.",
 	"Provide insightful comments, actually talk with the people in your thread.  Otherwise known as supporting your thread."
@@ -97,20 +97,20 @@ var q3 = new Problem("When is it okay to use rage faces?",
 	["In a VERY specific circumstance where it is extremely applicable.",
 	"In real life as a bumper sticker.",
 	"It's not okay, get it off my screen.",
-	"I don't know"
+	"I don't know (Look at you being all indecisive)"
 	], 0);
 
 var q4 = new Problem("What's the difference between a meme and an image macro?",
 	["Nothing!  I took a picture of my friend making a face, I love internet maymays!",
-	"A meme is slightly akin to something going viral.  It's a particular image, video, or even text that is highly reguarded as funny and shared until it's almost common knowledge.  An image macro is text pasted onto an image with some sort of humor intended relating to the image.",
-	"I don't know and none of these answers seem to make sense.  Google is my favorite web browser, I use it to check my email at AOL.",
+	"A meme is akin to something going viral.  It's a particular image, video, ortext that is highly reguarded as funny and shared until it's well known.  An image macro is text pasted onto an image with some sort of humor intended relating to the image.",
+	"I don't know.  Yahoo is my favorite web browser, I use it to check my email at AOL.",
 	"RAGEFACE LOL"
 	], 1);
 
 var q5 = new Problem("What's a common trait between all websites?",
 	["They're all on the internet!",
 	"They all have a basis for their existence.  They're there to serve a purpose.",
-	"Love it or hate it, somewhere on this website, there's a picture or video of a cat. ",
+	"Love it or hate it, somewhere on this website, there's a picture, video, or reference of a cat. ",
 	"www...?"
 	], 2);
 
@@ -137,7 +137,7 @@ var q8 = new Problem("You just found something funny on Reddit, what do you do?"
 
 var q9 = new Problem("Something is being debated.  You suddenly realized you did a seven page research paper on it in school, what do you do?",
 	["Walk into the discussion wearing your best 'I'm the expert hat', and tell people you did a 15 page research paper that went into depths further than the Mariana Trench.  You practically did all the science behind it yourself.",
-	"Provide a counter-argument humbly based on what you know from your research, but don't go beyond the bounds of your argument and claim it as fact.  Maybe even expand your knowledge by looking into it a bit more.",
+	"Provide a counter-argument humbly based on what you know from your research, but don't go beyond the bounds of your argument and claim it as fact.",
 	"Paste your entire paper into the replies section.",
 	"I'm still mad you made a reference to Reddit. (Oh get over it already.)"
 	], 1);
@@ -146,14 +146,14 @@ var q10 = new Problem("Religion and Political discussions are always....",
 	["Civil discussions where two groups of opposing views come together for the better of humanity and common-good.",
 	"Unproductive.",
 	"A way to get everyone to accept your views and realize how wrong they were.",
-	"Always a bad idea.  Always."
+	"A bad idea.  Always."
 	], 3);
 
 var q11 = new Problem("You're fired up over something!  What do you do?!",
 	["Make a new hashtag on Twitter!  If it becomes popular I made a difference, right?",
 	"Like a post on Facebook relating to what you're mad about.  Each like gives the world +1 'for the greater good!' point.",
 	"Get out and rally about whatever it is you're fired up over.  Try to talk with your local government or something.  Be proactive.",
-	"Enroll in a mass-mailing list to spam your local congressman/woman's inbox.  They'll totally read every single one of them and absolutely don't have an assistant who replies to every single one with an automated response.  That would be crazy!"
+	"Enroll in a mass-mailing list to spam your local whatever's inbox.  They'll totally read every single one of them and don't have an assistant who replies to every single one with an automated response."
 	], 2);
 
 var q12 = new Problem("Wikipedia..",
