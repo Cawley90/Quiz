@@ -9,8 +9,13 @@ $(document).ready(function(){
 	//rsresponse means result screen response, or the area in which the text is placed in the result screen.
 	var rsresponse = $("#response");
 
-
-
+//winning music
+function musicPlay() {
+  $('#nedm')[0].load();
+  $('#nedm')[0].play();
+  $('#nedm')[0].volume = 0.7;
+  
+}
 
 //I used an array with each question here, (Or at least the question names).  When the page loads, the currentQ number is set at 0. 
 //Question 1 = 0 because it's the first thing the page loads (technically).  It will incriment whenever the loadnext function is used, 
@@ -232,11 +237,30 @@ function fin() {
 
 			else if (currentQ == 11) {
 				answerCheck($(this).attr('data-value'), q12.correctAns);
+				musicPlay();
 				qField.append("How did you do?");
 				$('#winGraphic').fadeIn(100);
-				ansField.append("Horribly, you suck at things, go away and never come back you fucking pleb");
+				ansField.append("<p id = 'statText'>Well look at that, you did it.  And here I was worrying that the instructions were too difficult.  You finished the quiz with " +corCount+ " correct answers, and " +incorCount+ " incorrect answers.  Thats like, " +corCount+"/12!  Want to try again?  Yes?  No?  Yes.</div>");
+				$('#newGame').fadeIn(1000);
+
 			}
 			
+			$(document).on("click", "#newGame", function(){
+				$('#winGraphic').fadeOut(100);
+				$('#newGame').fadeOut(100);
+				qField.children().fadeOut(300);
+				qField.empty();
+				ansField.children().fadeOut(300);
+				qField.append(q1.q);
+				ansField.append(q1.a);
+				currentQ = 0;
+				corCount = 0;
+				incorCount = 0;
+				$('#cor').text("Correct:");
+				$('#incor').text("Incorrect:");
+				$("#nedm")[0].pause();
+
+			})
 			
 			
 
@@ -250,6 +274,10 @@ $(document).on("click", "#nextQ", function(){
 	resultScreen.fadeOut(500);
 
 });
+
+
+
+
 	
 });
 
