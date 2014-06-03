@@ -6,23 +6,32 @@
 	<link type="text/css" rel="stylesheet" href="stylesheet.css" />
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 	<script type="text/javascript" src="app.js"></script>
+	<link href='http://fonts.googleapis.com/css?family=Raleway' rel='stylesheet' type='text/css'>
 </head>
 
 <body>
 	<div id="banner"><h1>Internetiquette Quiz</h1></div>
 	<div id="userPoints">
-	<div class="boxHead"></div>
-		<p>Correct:</p>
+	<div class="boxHead">
+		<p>Your Score</p>
+	</div>
+		<p id="cor">Correct:</p>
 		</br>
-		<p>Incorrect:</p>
+		<p id="incor">Incorrect:</p>
 	</div>
 	<div id="resultScreen">
 		<img src = "img/result.png" />
+		<p id = "response"></p>
 		<div id = "nextQ">Next</div>
 	</div>
 	<div id="qBox">
-		<div class="boxHead"></div>
+		<div class="boxHead">
+			<p id = "qNum">The Internetiquette Quiz</p>
+		</div>
 		<div id="qField"><p>Welcome to the Internetiquette Quiz!</p></div>
+		<div id="winGraphic">
+			<img src = "img/swing.gif" />
+		</div>
 		<div id="ansField">
 		<p>This quiz is designed to challenge your knowledge of the do's and dont's of being a responsible internet user!</p>
 		

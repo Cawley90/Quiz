@@ -4,37 +4,56 @@ $(document).ready(function(){
 	var nQuestion = [q1, q2];
 	var resultScreen = $('#resultScreen');
 	var currentQ = 0;
+	var corCount = 0;
+	var incorCount = 0;
+	//rsresponse means result screen response, or the area in which the text is placed in the result screen.
+	var rsresponse = $("#response");
 
 
 
+
+//I used an array with each question here, (Or at least the question names).  When the page loads, the currentQ number is set at 0. 
+//Question 1 = 0 because it's the first thing the page loads (technically).  It will incriment whenever the loadnext function is used, 
+//each time it inrements, it goes up a question.  I did this to avoid having to load the questions individually, now I can do it in one
+//function.  Fabulous!
 function loadNext() {
-	var qArray = [q1, q2, q3, q4, q5];
+	var qArray = [q1, q2, q3, q4, q5, q6, q7, q8, q9, q10, q11, q12, fin];
 	currentQ = (currentQ+1)%qArray.length;
-	qField.children().fadeOut(500);
+	qField.children().fadeOut(100);
 	qField.empty();
-	ansField.children().fadeOut(500);
+	ansField.children().fadeOut(100);
 	qField.append(qArray[currentQ].q);
 	ansField.append(qArray[currentQ].a);
 
 }
 
- //sel = slected answer, ca = correct answer, ln = loadnext, meaning which question comes after the one in question.  Doing this to cut down the code I have to do.
+ //sel = slected answer, ca = correct answer.  Doing this to cut down the code I have to do.
 function answerCheck (sel, ca) {
 	this.sel = sel;
 	this.ca = ca;
+	
+
 	if (sel == ca) {
-		alert("Yis");
+		corCount++
+		resultScreen.fadeIn(500);
+		rsresponse.text("Correct!");
+		$('#cor').text("Correct: "+corCount);
 		loadNext();
+
 		
 	}
 
 	else {
-		alert("Nah");
+		incorCount++
+		resultScreen.fadeIn(500);	
+		rsresponse.text("Incorrect!");
+		$('#incor').text("Incorrect: "+incorCount);
+		loadNext();
 	}
 
 }
 
-	
+//q = question, a = answer, correctAns = .. well.. correct answer.  a is equal to whatever answer is in the array, nothing specific.
 function Problem(q, a, correctAns){
 	this.q = q;
 	this.a = [];
@@ -90,26 +109,85 @@ var q5 = new Problem("What's a common trait between all websites?",
 	"www...?"
 	], 2);
 
+var q6 = new Problem("I think I'm having a medical emergency, where do I go?",
+	["Yahoo Answers, there's bound to be a doctor somewhere on there.",
+	"WebMD",
+	"The website I frequent.  I know the members of the community and can trust them to take it seriously.",
+	"The hospital, because the internet will tell me my broken toe is most likely cancer."
+	], 3);
+
+var q7 = new Problem("Do I, or do I not post an 'Ask me anything' thread?",
+	["Did you just do something mundane?  Maybe you just made toast.",
+	"Something out of the ordinary just happened that you think could have some fun discussion, you don't want to post a wall of text and want to share the story.",
+	"I'm bored.",
+	"There's 5 other 'Ask Me Anything' threads on the board right now, might as well make it 6!"
+	], 1);
+
+var q8 = new Problem("You just found something funny on Reddit, what do you do?",
+	["Steal the joke and post it somewhere else, no one will catch on because Reddit is a secret clubhouse that only I and a few elite members of the internet are granted access to.",
+	"Upvote, comment, save the image or page.  Share it with your friends for a good laugh.",
+	"Downvote it even though you liked it.",
+	"I don't even like Reddit, get out of here with your websites."
+	], 1);
+
+var q9 = new Problem("Something is being debated.  You suddenly realized you did a seven page research paper on it in school, what do you do?",
+	["Walk into the discussion wearing your best 'I'm the expert hat', and tell people you did a 15 page research paper that went into depths further than the Mariana Trench.  You practically did all the science behind it yourself.",
+	"Provide a counter-argument humbly based on what you know from your research, but don't go beyond the bounds of your argument and claim it as fact.  Maybe even expand your knowledge by looking into it a bit more.",
+	"Paste your entire paper into the replies section.",
+	"I'm still mad you made a reference to Reddit. (Oh get over it already.)"
+	], 1);
+
+var q10 = new Problem("Religion and Political discussions are always....",
+	["Civil discussions where two groups of opposing views come together for the better of humanity and common-good.",
+	"Unproductive.",
+	"A way to get everyone to accept your views and realize how wrong they were.",
+	"Always a bad idea.  Always."
+	], 3);
+
+var q11 = new Problem("You're fired up over something!  What do you do?!",
+	["Make a new hashtag on Twitter!  If it becomes popular I made a difference, right?",
+	"Like a post on Facebook relating to what you're mad about.  Each like gives the world +1 'for the greater good!' point.",
+	"Get out and rally about whatever it is you're fired up over.  Try to talk with your local government or something.  Be proactive.",
+	"Enroll in a mass-mailing list to spam your local congressman/woman's inbox.  They'll totally read every single one of them and absolutely don't have an assistant who replies to every single one with an automated response.  That would be crazy!"
+	], 2);
+
+var q12 = new Problem("Wikipedia..",
+	["Is an untrustworthy source of information.  Anyone can make edits to it, I got docked points on an assignment once because it tricked me into thinking trickle-down economics were a weather system!",
+	"The internet is a bad place for information, go to your local library and tack on an extra 17 hours onto whatever you're trying to accomplish by looking through books (Not that there's anything wrong with that..)",
+	"Is, like any other website, a place of good and evil.  Yes people can make absurd edits, and it's up to me to look into every detail before believing it.  Any line worth looking at on any article on Wikipedia has an indicator for what source that information came from.  Click it, check the source.",
+	"I have no strong feelings one way or the other.  (You know this option isn't correct)."
+	], 2);
 
 
-
+function fin() {
+		qField.children().fadeOut(300);
+		qField.empty();
+		ansField.children().fadeOut(300);
+		ansField.append("Dun");
+}
 
 	
-	// <--- When user clicks Start, it clears the welcome message and loads first question -->
+	// When user clicks Start, it clears the welcome message and loads first question.  
 	$(document).on("click", "#startBtn", function(){
-		//currentQ++
-		qField.children().fadeOut(500);
+		qField.children().fadeOut(300);
 		qField.empty();
-		ansField.children().fadeOut(500);
-		//loadNext();
+		ansField.children().fadeOut(300);
 		qField.append(q1.q);
 		ansField.append(q1.a);
 		
+		//BUT WAIT, WHAT IS THIS.  When a user clicks on an answer (Any answer), it will non-violently throw it into my answerChecker.  
+		//this.attr.(datavalue) thing is saying "Check the data-value of whatever is selected".  Data value is explained on lines 99-102.
+		//q1.correctAns is telling the answer-checker-thing "Hey, the correct answer for Question one is 3", it compares that number with the
+		//answer array for question one, and guess what, the answer is totally array item 3 for question one.  No cheating.
+
+		//so what's this currentQ == number nonsense?  currentQ is technically counting what 'page' we're on, or question.  It starts off at 0,
+		//so question 1 is currentQ 0, and it goes on.  So if the currentQ = 0, check q1.correctAns to evaluate if the user is correct.  I was 
+		//having an issue where the answerCheck was trying to grab the correct answer from question 1 for question 2.  This is a good way to isolate it.
 		$(document).on("click", '#ans', function(){
-			//alert($(this).attr('data-value'));
 			if (currentQ == 0) {
 				console.log(currentQ);
 				answerCheck($(this).attr('data-value'), q1.correctAns);
+
 			}
 
 			else if (currentQ == 1) {
@@ -128,9 +206,39 @@ var q5 = new Problem("What's a common trait between all websites?",
 				answerCheck($(this).attr('data-value'), q5.correctAns);
 			}
 
-			
-			
+			else if (currentQ == 5) {
+				answerCheck($(this).attr('data-value'), q6.correctAns);
+			}
 
+			else if (currentQ == 6) {
+				answerCheck($(this).attr('data-value'), q7.correctAns);
+			}
+
+			else if (currentQ == 7) {
+				answerCheck($(this).attr('data-value'), q8.correctAns);
+			}
+
+			else if (currentQ == 8) {
+				answerCheck($(this).attr('data-value'), q9.correctAns);
+			}
+
+			else if (currentQ == 9) {
+				answerCheck($(this).attr('data-value'), q10.correctAns);
+			}
+
+			else if (currentQ == 10) {
+				answerCheck($(this).attr('data-value'), q11.correctAns);
+			}
+
+			else if (currentQ == 11) {
+				answerCheck($(this).attr('data-value'), q12.correctAns);
+				qField.append("How did you do?");
+				$('#winGraphic').fadeIn(100);
+				ansField.append("Horribly, you suck at things, go away and never come back you fucking pleb");
+			}
+			
+			
+			
 
 									
 		}); 	
@@ -138,6 +246,10 @@ var q5 = new Problem("What's a common trait between all websites?",
 	});
 
 
+$(document).on("click", "#nextQ", function(){
+	resultScreen.fadeOut(500);
+
+});
 	
 });
 
