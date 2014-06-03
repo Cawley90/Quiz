@@ -246,8 +246,8 @@ function fin() {
 			}
 			
 			$(document).on("click", "#newGame", function(){
-				$('#winGraphic').fadeOut(100);
-				$('#newGame').fadeOut(100);
+				$('#winGraphic').fadeOut();
+				$('#newGame').fadeOut();
 				qField.children().fadeOut(300);
 				qField.empty();
 				ansField.children().fadeOut(300);
