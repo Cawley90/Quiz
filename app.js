@@ -163,13 +163,6 @@ var q12 = new Problem("Wikipedia..",
 	], 2);
 
 
-function fin() {
-		qField.children().fadeOut(300);
-		qField.empty();
-		ansField.children().fadeOut(300);
-		ansField.append("Dun");
-}
-
 	
 	// When user clicks Start, it clears the welcome message and loads first question.  
 	$(document).on("click", "#startBtn", function(){
