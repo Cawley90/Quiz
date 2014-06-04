@@ -3,11 +3,78 @@ $(document).ready(function(){
 	var ansField = $('#ansField');
 	var nQuestion = [q1, q2];
 	var resultScreen = $('#resultScreen');
-	var currentQ = 0;
+	var currentQ = -1;
 	var corCount = 0;
 	var incorCount = 0;
 	//rsresponse means result screen response, or the area in which the text is placed in the result screen.
 	var rsresponse = $("#response");
+	
+
+	//BUT WAIT, WHAT IS THIS.  When a user clicks on an answer (Any answer), it will non-violently throw it into my answerChecker.  
+	//this.attr.(datavalue) thing is saying "Check the data-value of whatever is selected".  Data value is explained on lines 99-102.
+	//q1.correctAns is telling the answer-checker-thing "Hey, the correct answer for Question one is 3", it compares that number with the
+	//answer array for question one, and guess what, the answer is totally array item 3 for question one.  No cheating.
+
+	//so what's this currentQ == number nonsense?  currentQ is technically counting what 'page' we're on, or question.  It starts off at 0,
+	//so question 1 is currentQ 0, and it goes on.  So if the currentQ = 0, check q1.correctAns to evaluate if the user is correct.  I was 
+	//having an issue where the answerCheck was trying to grab the correct answer from question 1 for question 2.  This is a good way to isolate it.
+	$(document).on("click", '#ans', function(){
+		if (currentQ == 0) {
+			console.log(currentQ);
+			answerCheck($(this).attr('data-value'), q1.correctAns);
+
+		}
+
+		else if (currentQ == 1) {
+			answerCheck($(this).attr('data-value'), q2.correctAns);
+		}
+
+		else if (currentQ == 2) {
+			answerCheck($(this).attr('data-value'), q3.correctAns);
+		}
+
+		else if (currentQ == 3) {
+			answerCheck($(this).attr('data-value'), q4.correctAns);
+		}
+		
+		else if (currentQ == 4) {
+			answerCheck($(this).attr('data-value'), q5.correctAns);
+		}
+
+		else if (currentQ == 5) {
+			answerCheck($(this).attr('data-value'), q6.correctAns);
+		}
+
+		else if (currentQ == 6) {
+			answerCheck($(this).attr('data-value'), q7.correctAns);
+		}
+
+		else if (currentQ == 7) {
+			answerCheck($(this).attr('data-value'), q8.correctAns);
+		}
+
+		else if (currentQ == 8) {
+			answerCheck($(this).attr('data-value'), q9.correctAns);
+		}
+
+		else if (currentQ == 9) {
+			answerCheck($(this).attr('data-value'), q10.correctAns);
+		}
+
+		else if (currentQ == 10) {
+			answerCheck($(this).attr('data-value'), q11.correctAns);
+		}
+
+		else if (currentQ == 11) {
+			answerCheck($(this).attr('data-value'), q12.correctAns);
+			musicPlay();
+			qField.append("How did you do?");
+			$('#winGraphic').fadeIn(100);
+			ansField.append("<p id = 'statText'>Well look at that, you did it.  And here I was worrying that the instructions were too difficult.  You finished the quiz with " +corCount+ " correct answers, and " +incorCount+ " incorrect answers.  Thats like, " +corCount+"/12!  Want to try again?  Yes?  No?  Yes.</div>");
+			$('#newGame').fadeIn(1000);
+
+		}
+	})
 
 //winning music
 function musicPlay() {
@@ -21,8 +88,7 @@ function musicPlay() {
 //each time it inrements, it goes up a question.  I did this to avoid having to load the questions individually, now I can do it in one
 //function.  Fabulous!
 function loadNext() {
-	var qArray = [q1, q2, q3, q4, q5, q6, q7, q8, q9, q10, q11, q12, fin];
-	currentQ = (currentQ+1)%qArray.length;
+	currentQ++;
 	qField.children().fadeOut(100);
 	qField.empty();
 	ansField.children().fadeOut(100);
@@ -32,10 +98,7 @@ function loadNext() {
 }
 
  //sel = slected answer, ca = correct answer.  Doing this to cut down the code I have to do.
-function answerCheck (sel, ca) {
-	this.sel = sel;
-	this.ca = ca;
-	
+function answerCheck (sel, ca) {	
 
 	if (sel == ca) {
 		corCount++
@@ -71,6 +134,7 @@ function Problem(q, a, correctAns){
 	
 
 }
+
 
 
 
@@ -162,111 +226,40 @@ var q12 = new Problem("Wikipedia..",
 	"I have no strong feelings one way or the other.  (You know this option isn't correct)."
 	], 2);
 
+var qArray = [q1, q2, q3, q4, q5, q6, q7, q8, q9, q10, q11, q12, fin];
+
 
 function fin() {
 		qField.children().fadeOut(300);
 		qField.empty();
 		ansField.children().fadeOut(300);
-		ansField.append("Dun");
+		
 }
 
 	
-	// When user clicks Start, it clears the welcome message and loads first question.  
-	$(document).on("click", "#startBtn", function(){
-		qField.children().fadeOut(300);
-		qField.empty();
-		ansField.children().fadeOut(300);
-		qField.append(q1.q);
-		ansField.append(q1.a);
-		
-		//BUT WAIT, WHAT IS THIS.  When a user clicks on an answer (Any answer), it will non-violently throw it into my answerChecker.  
-		//this.attr.(datavalue) thing is saying "Check the data-value of whatever is selected".  Data value is explained on lines 99-102.
-		//q1.correctAns is telling the answer-checker-thing "Hey, the correct answer for Question one is 3", it compares that number with the
-		//answer array for question one, and guess what, the answer is totally array item 3 for question one.  No cheating.
+// When user clicks Start, it clears the welcome message and loads first question.  
+$(document).on("click", "#startBtn", loadNext);
 
-		//so what's this currentQ == number nonsense?  currentQ is technically counting what 'page' we're on, or question.  It starts off at 0,
-		//so question 1 is currentQ 0, and it goes on.  So if the currentQ = 0, check q1.correctAns to evaluate if the user is correct.  I was 
-		//having an issue where the answerCheck was trying to grab the correct answer from question 1 for question 2.  This is a good way to isolate it.
-		$(document).on("click", '#ans', function(){
-			if (currentQ == 0) {
-				console.log(currentQ);
-				answerCheck($(this).attr('data-value'), q1.correctAns);
-
-			}
-
-			else if (currentQ == 1) {
-				answerCheck($(this).attr('data-value'), q2.correctAns);
-			}
-
-			else if (currentQ == 2) {
-				answerCheck($(this).attr('data-value'), q3.correctAns);
-			}
-
-			else if (currentQ == 3) {
-				answerCheck($(this).attr('data-value'), q4.correctAns);
-			}
 			
-			else if (currentQ == 4) {
-				answerCheck($(this).attr('data-value'), q5.correctAns);
-			}
+$(document).on("click", "#newGame", function(){
+	$('#winGraphic').hide();
+	$('#newGame').hide();
+	qField.children().hide();
+	qField.empty();
+	ansField.children().hide();
+	qField.append(q1.q);
+	ansField.append(q1.a);
+	currentQ = 0;
+	corCount = 0;
+	incorCount = 0;
+	$('#cor').text("Correct:");
+	$('#incor').text("Incorrect:");
+	$("#nedm")[0].pause();
 
-			else if (currentQ == 5) {
-				answerCheck($(this).attr('data-value'), q6.correctAns);
-			}
-
-			else if (currentQ == 6) {
-				answerCheck($(this).attr('data-value'), q7.correctAns);
-			}
-
-			else if (currentQ == 7) {
-				answerCheck($(this).attr('data-value'), q8.correctAns);
-			}
-
-			else if (currentQ == 8) {
-				answerCheck($(this).attr('data-value'), q9.correctAns);
-			}
-
-			else if (currentQ == 9) {
-				answerCheck($(this).attr('data-value'), q10.correctAns);
-			}
-
-			else if (currentQ == 10) {
-				answerCheck($(this).attr('data-value'), q11.correctAns);
-			}
-
-			else if (currentQ == 11) {
-				answerCheck($(this).attr('data-value'), q12.correctAns);
-				musicPlay();
-				qField.append("How did you do?");
-				$('#winGraphic').fadeIn(100);
-				ansField.append("<p id = 'statText'>Well look at that, you did it.  And here I was worrying that the instructions were too difficult.  You finished the quiz with " +corCount+ " correct answers, and " +incorCount+ " incorrect answers.  Thats like, " +corCount+"/12!  Want to try again?  Yes?  No?  Yes.</div>");
-				$('#newGame').fadeIn(1000);
-
-			}
-			
-			$(document).on("click", "#newGame", function(){
-				$('#winGraphic').hide();
-				$('#newGame').hide();
-				qField.children().hide();
-				qField.empty();
-				ansField.children().hide();
-				qField.append(q1.q);
-				ansField.append(q1.a);
-				currentQ = 0;
-				corCount = 0;
-				incorCount = 0;
-				$('#cor').text("Correct:");
-				$('#incor').text("Incorrect:");
-				$("#nedm")[0].pause();
-
-			})
+})
 			
 			
 
-									
-		}); 	
-		
-	});
 
 
 $(document).on("click", "#nextQ", function(){
